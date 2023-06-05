@@ -5,7 +5,7 @@ const cors = require("cors");
 const user = require("./routes/user");
 const videos = require("./routes/videos");
 require("dotenv").config();
-const port = process.env.PORT || 3008;
+const port = process.env.PORT || 3000;
 
 mongoose.connect(
   `${process.env.MONGOO_DB}`,
