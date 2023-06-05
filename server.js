@@ -36,10 +36,17 @@ const PORT = process.env.PORT || 3000;
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGOO_DB);
+    const conn = await mongoose.connect(process.env.MONGOO_DB,
+      {
+        useNewUrlParser: true,
+        // useUnifiedTopology: true,
+        // useCreateIndex: false,
+        // useFindAndModify: false
+      },
+    );
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.log(error);
+    console.log("-----------Errot-----", error);
     process.exit(1);
   }
 }
@@ -56,7 +63,7 @@ app.get("/", (req, res) => {
 
 //Connect to the database before listening
 connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log("listening for requests");
-    })
+  app.listen(PORT, () => {
+    console.log("listening for requests");
+  })
 })
