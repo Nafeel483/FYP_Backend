@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -10,7 +12,8 @@ const serverless = require('serverless-http');
 require("dotenv").config();
 
 
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
+const port = parseInt(process.env.PORT) || 8080;
 
 connectDB()
 // mongoose.connect(
@@ -35,6 +38,7 @@ app.get("/", (req, res) => {
   res.json({
     hello: "hi!"
   });
+  res.send('Hello from App Engine!');
 });
 
 app.listen(port, () => {
@@ -42,7 +46,7 @@ app.listen(port, () => {
 });
 // app.use(`/.netlify/functions/api`, router);
 
-// module.exports = app;
+module.exports = app;
 module.exports.handler = serverless(app);
 
 // const connectDB = async () => {
